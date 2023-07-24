@@ -1,7 +1,8 @@
 package ru.netology.qa.diplom.data;
 
+
 import com.github.javafaker.Faker;
-import lombok.*;
+import lombok.Value;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -14,7 +14,7 @@ public class TestData {
     final int cardNumberMaxLength = 16;
 
     final String ordersTable = "order_entity";
-    final String testHost = "http://localhost:8080";
+    final String address = "http://localhost:8080";
 
     @BeforeAll
     static void setUpAll() {

@@ -1,11 +1,14 @@
 package ru.netology.qa.diplom.test;
 
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import ru.netology.qa.diplom.data.DataHelper;
 import ru.netology.qa.diplom.data.DataSQL;
 import ru.netology.qa.diplom.page.DashboardPage;
 import ru.netology.qa.diplom.page.PaymentFormPage;
-
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,11 +18,11 @@ public class PaymentPageTest extends TestData {
     static PaymentFormPage paymentForm;
 
     final String paymentsTable = "payment_entity";
-    String expectedPrice = "4000000";
+    String expectedPrice = "4500000";
 
     @BeforeEach
     void openHost() {
-        open(testHost);
+        open(address);
 
         dashboardPage = new DashboardPage();
         paymentForm = dashboardPage.openPaymentForm();
