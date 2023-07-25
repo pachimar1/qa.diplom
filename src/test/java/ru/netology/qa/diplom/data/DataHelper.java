@@ -34,9 +34,8 @@ public class DataHelper {
     public static String getInvalidSymbolsForCharacterFields() {
         return generateNumericCode(10) + "~`@\"#№$;%^:&?*()_+=/\\{}[]|<>'";
     }
-
-    public static String getCardOwnerWithHyphen() {
-        return "IVAN IVANOV-PETROV";
+    public static String getInvalidNumbersForCharacterFields() {
+        return generateNumericCode(10) + "1234567890";
     }
 
     public static String generateCardOwner(String locale) {
@@ -90,6 +89,137 @@ public class DataHelper {
                 generateCardOwner("en"),
                 generateNumericCode(3));
     }
+
+    public static CardData generateCardDataWithCardOwnerFixedLength(int cardOwnerLength, int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwnerWithFixedLength("en", cardOwnerLength),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithInvalidCardOwnerLocale(String locale, int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner(locale),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithInvalidCardOwnerSymbols(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                getInvalidSymbolsForCharacterFields(),
+                generateNumericCode(3));
+    }
+    public static CardData generateCardDataWithInvalidCardOwnerNumbers(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                getInvalidNumbersForCharacterFields(),
+                generateNumericCode(3));
+    }
+
+
+    public static CardData generateCardDataWithIncompleteCardOwner(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateNameOnly("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithShiftedMonthFromCurrent(int shiftInMonths) {
+        LocalDate date = LocalDate.now().plusMonths(shiftInMonths);
+        return new CardData(getApprovedCardNumber(),
+                DateTimeFormatter.ofPattern("MM").format(date),
+                DateTimeFormatter.ofPattern("yy").format(date),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithShiftedYearFromCurrent(int shiftInYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(shiftInYears),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithWrongMonth(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateWrongMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithThreeSymbols(int expiryYears) {
+        return new CardData("123",
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithSymbols(int expiryYears) {
+        return new CardData("ABCD",
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithNotDatabase(int expiryYears) {
+        return new CardData("4444 4444 4444 4444",
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+
+    public static CardData generateCardDataWithEmptyCard(int expiryYears) {
+        return new CardData(null,
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithEmptyMonth(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                null,
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithEmptyYear(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                null,
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithEmptyCardOwner(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                null,
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithEmptyCVC(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                null);
+    }
+
 
     @Value
     public static class CardData {
