@@ -241,5 +241,20 @@ public class CreditPageTest extends TestData {
 
             creditForm.checkCardNumberError("Неверный формат", 2);
         }
+
+        @Test
+        @DisplayName("23. Проверка отправки формы заявки с именем, содержащим дефис")
+        void shouldSendFormWithCardOwnerWithHyphen() {
+            long rowsOrdersBefore = DataSQL.getRowsAmountFrom(ordersTable);
+            long rowsCreditsBefore = DataSQL.getRowsAmountFrom(creditRequestsTable);
+
+            creditForm.fillForm(DataHelper.generateCardDataWithHyphenCardOwner(expiryYears));
+            creditForm.sendForm();
+
+            creditForm.checkSuccessNotification(10);
+            assertEquals(rowsOrdersBefore + 1, DataSQL.getRowsAmountFrom(ordersTable));
+            assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(creditRequestsTable));
+            assertEquals(approved, DataSQL.getLastStatusFromCreditsTable());
+        }
     }
 }

@@ -34,8 +34,13 @@ public class DataHelper {
     public static String getInvalidSymbolsForCharacterFields() {
         return generateNumericCode(10) + "~`@\"#№$;%^:&?*()_+=/\\{}[]|<>'";
     }
+
     public static String getInvalidNumbersForCharacterFields() {
         return generateNumericCode(10) + "1234567890";
+    }
+
+    public static String getCardOwnerWithHyphen() {
+        return "AGAEV ALI-AZIS";
     }
 
     public static String generateCardOwner(String locale) {
@@ -113,6 +118,7 @@ public class DataHelper {
                 getInvalidSymbolsForCharacterFields(),
                 generateNumericCode(3));
     }
+
     public static CardData generateCardDataWithInvalidCardOwnerNumbers(int expiryYears) {
         return new CardData(getApprovedCardNumber(),
                 generateMonth(),
@@ -218,6 +224,14 @@ public class DataHelper {
                 generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
                 generateCardOwner("en"),
                 null);
+    }
+
+    public static CardData generateCardDataWithHyphenCardOwner(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                getCardOwnerWithHyphen(),
+                generateNumericCode(3));
     }
 
 

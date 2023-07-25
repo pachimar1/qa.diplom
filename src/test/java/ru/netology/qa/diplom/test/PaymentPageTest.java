@@ -251,6 +251,21 @@ public class PaymentPageTest extends TestData {
 
             paymentForm.checkCardNumberError("Неверный формат", 2);
         }
+
+        @Test
+        @DisplayName("23. Проверка отправки формы заявки с именем, содержащим дефис")
+        void shouldSendFormWithCardOwnerWithHyphen() {
+            long rowsOrdersBefore = DataSQL.getRowsAmountFrom(ordersTable);
+            long rowsCreditsBefore = DataSQL.getRowsAmountFrom(paymentsTable);
+
+            paymentForm.fillForm(DataHelper.generateCardDataWithHyphenCardOwner(expiryYears));
+            paymentForm.sendForm();
+
+            paymentForm.checkSuccessNotification(10);
+            assertEquals(rowsOrdersBefore + 1, DataSQL.getRowsAmountFrom(ordersTable));
+            assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(paymentsTable));
+            assertEquals(approved, DataSQL.getLastStatusFromCreditsTable());
+        }
    }
 }
 
