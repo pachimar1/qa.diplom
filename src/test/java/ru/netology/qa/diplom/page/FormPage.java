@@ -74,10 +74,6 @@ public class FormPage {
         return cvc.$(inputClass).getValue();
     }
 
-    public void clearField(SelenideElement element) {
-        element.$(inputClass).sendKeys(Keys.CONTROL + "A");
-        element.$(inputClass).sendKeys(Keys.BACK_SPACE);
-    }
 
     public void checkSuccessNotification(int durationOfSec) {
         notificationSuccess.$(".notification__content").shouldHave(exactText("Операция одобрена Банком."), Duration.ofSeconds(durationOfSec));
