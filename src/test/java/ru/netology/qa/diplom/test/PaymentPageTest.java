@@ -257,6 +257,23 @@ public class PaymentPageTest extends TestData {
             assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(paymentsTable));
             assertEquals(approved, DataSQL.getLastEntryFromPaymentsTable());
         }
+
+        @Test
+        @DisplayName("23. Проверка ввода в поле Месяц нулевых значений 00")
+        void shouldNotSendFormWithZeroMonth() {
+            paymentForm.fillForm(DataHelper.generateCardDataWithZeroMonth(expiryYears));
+            paymentForm.sendForm();
+
+            paymentForm.checkMonthError("Неверный формат", 2);
+        }
+        @Test
+        @DisplayName("24. Проверка ввода в поле Год нулевых значений 00")
+        void shouldNotSendFormWithZeroYear() {
+            paymentForm.fillForm(DataHelper.generateCardDataWithZeroYear());
+            paymentForm.sendForm();
+
+            paymentForm.checkYearError("Истёк срок действия карты", 2);
+        }
    }
 }
 

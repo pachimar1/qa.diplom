@@ -234,6 +234,21 @@ public class DataHelper {
                 generateNumericCode(3));
     }
 
+    public static CardData generateCardDataWithZeroYear() {
+        return new CardData(getApprovedCardNumber(),
+                generateMonth(),
+                "00",
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
+
+    public static CardData generateCardDataWithZeroMonth(int expiryYears) {
+        return new CardData(getApprovedCardNumber(),
+                "00",
+                generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
+                generateCardOwner("en"),
+                generateNumericCode(3));
+    }
 
     @Value
     public static class CardData {

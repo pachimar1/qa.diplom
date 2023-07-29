@@ -10,7 +10,7 @@ public class TestData {
     final String approved = "APPROVED";
     final String declined = "DECLINED";
     final int expiryYears = 5;
-    final int cardOwnerMaxLength = 30;
+    final int cardOwnerMaxLength =27;
     final int cardNumberMaxLength = 16;
 
     final String ordersTable = "order_entity";

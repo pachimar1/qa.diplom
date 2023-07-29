@@ -247,5 +247,21 @@ public class CreditPageTest extends TestData {
             assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(creditRequestsTable));
             assertEquals(approved, DataSQL.getLastStatusFromCreditsTable());
         }
+        @Test
+        @DisplayName("23. Проверка ввода в поле Месяц нулевых значений 00")
+        void shouldNotSendFormWithZeroMonth() {
+            creditForm.fillForm(DataHelper.generateCardDataWithZeroMonth(expiryYears));
+            creditForm.sendForm();
+
+            creditForm.checkMonthError("Неверный формат", 2);
+        }
+        @Test
+        @DisplayName("24. Проверка ввода в поле Год нулевых значений 00")
+        void shouldNotSendFormWithZeroYear() {
+            creditForm.fillForm(DataHelper.generateCardDataWithZeroYear());
+            creditForm.sendForm();
+
+            creditForm.checkYearError("Истёк срок действия карты", 2);
+        }
     }
 }
