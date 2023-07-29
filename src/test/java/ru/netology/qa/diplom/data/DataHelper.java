@@ -40,7 +40,7 @@ public class DataHelper {
     }
 
     public static String getCardOwnerWithHyphen() {
-        return "AGAEV ALI-AZIS";
+        return "ALI-AZIS AGAEV";
     }
 
     public static String generateCardOwner(String locale) {
