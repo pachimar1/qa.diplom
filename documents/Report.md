@@ -10,6 +10,13 @@
 - пройдены успешно: 29 (65,9%)
 - пройдены неудачно: 15 (34.1%)
 
+![image](https://github.com/pachimar1/qa.diplom/assets/125981726/a6c86d70-7407-4c64-8a56-c6659d2e8351)
+![image](https://github.com/pachimar1/qa.diplom/assets/125981726/3844964a-d9c5-47ac-9d02-40679a36df3e)
+
+![image](https://github.com/pachimar1/qa.diplom/assets/125981726/977d8cc8-7623-4fea-a020-e595caeeeb4d)
+
+
+
 
 
 По результатам тестирования:
