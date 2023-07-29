@@ -141,6 +141,7 @@ public class CreditPageTest extends TestData {
 
             creditForm.checkCardOwnerError("Введите имя и фамилию, как указано на карте", 2);
         }
+
         @Test
         @DisplayName("12. Проверка отправки формы заявки с пустым значением в поле Номер карты")
         void shouldNotSendFormWithoutCardNumber() {
@@ -197,6 +198,7 @@ public class CreditPageTest extends TestData {
             creditForm.checkCardOwnerError("Поле обязательно для заполнения", 2);
             creditForm.checkCVCError("Неверный формат", 2);
         }
+
         @Test
         @DisplayName("18. Проверка ввода буквенных символов в поле Номер карты")
         void shouldNotEnterInvalidCardNumber() {
@@ -247,6 +249,7 @@ public class CreditPageTest extends TestData {
             assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(creditRequestsTable));
             assertEquals(approved, DataSQL.getLastStatusFromCreditsTable());
         }
+
         @Test
         @DisplayName("23. Проверка ввода в поле Месяц нулевых значений 00")
         void shouldNotSendFormWithZeroMonth() {
@@ -255,6 +258,7 @@ public class CreditPageTest extends TestData {
 
             creditForm.checkMonthError("Неверный формат", 2);
         }
+
         @Test
         @DisplayName("24. Проверка ввода в поле Год нулевых значений 00")
         void shouldNotSendFormWithZeroYear() {
@@ -262,6 +266,15 @@ public class CreditPageTest extends TestData {
             creditForm.sendForm();
 
             creditForm.checkYearError("Истёк срок действия карты", 2);
+        }
+
+        @Test
+        @DisplayName("25. Проверка ввода нулевых значений в поле Номер карты")
+        void shouldNotSendFormWithZeroCard() {
+            creditForm.fillForm(DataHelper.generateCardDataWithZeroNumberCard(expiryYears));
+            creditForm.sendForm();
+
+            creditForm.checkCardNumberError("Неверный формат", 2);
         }
     }
 }

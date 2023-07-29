@@ -151,6 +151,7 @@ public class PaymentPageTest extends TestData {
 
             paymentForm.checkCardOwnerError("Введите имя и фамилию, как указано на карте", 2);
         }
+
         @Test
         @DisplayName("12. Проверка отправки формы заявки с пустым значением в поле Номер карты")
         void shouldNotSendFormWithoutCardNumber() {
@@ -207,6 +208,7 @@ public class PaymentPageTest extends TestData {
             paymentForm.checkCardOwnerError("Поле обязательно для заполнения", 2);
             paymentForm.checkCVCError("Неверный формат", 2);
         }
+
         @Test
         @DisplayName("18. Проверка ввода буквенных символов в поле Номер карты")
         void shouldNotEnterInvalidCardNumber() {
@@ -266,6 +268,7 @@ public class PaymentPageTest extends TestData {
 
             paymentForm.checkMonthError("Неверный формат", 2);
         }
+
         @Test
         @DisplayName("24. Проверка ввода в поле Год нулевых значений 00")
         void shouldNotSendFormWithZeroYear() {
@@ -274,6 +277,15 @@ public class PaymentPageTest extends TestData {
 
             paymentForm.checkYearError("Истёк срок действия карты", 2);
         }
-   }
+
+        @Test
+        @DisplayName("25. Проверка ввода нулевых значений в поле Номер карты")
+        void shouldNotSendFormWithZeroCard() {
+            paymentForm.fillForm(DataHelper.generateCardDataWithZeroNumberCard(expiryYears));
+            paymentForm.sendForm();
+
+            paymentForm.checkCardNumberError("Неверный формат", 2);
+        }
+    }
 }
 

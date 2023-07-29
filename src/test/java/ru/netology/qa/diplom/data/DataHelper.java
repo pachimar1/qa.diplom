@@ -177,8 +177,8 @@ public class DataHelper {
                 generateNumericCode(3));
     }
 
-    public static CardData generateCardDataWithNotDatabase(int expiryYears) {
-        return new CardData("4444 4444 4444 4444",
+    public static CardData generateCardDataWithZeroNumberCard(int expiryYears) {
+        return new CardData("0000 0000 0000 0000",
                 generateMonth(),
                 generateShiftedYearFromCurrent(random.nextInt(expiryYears) + 1),
                 generateCardOwner("en"),
