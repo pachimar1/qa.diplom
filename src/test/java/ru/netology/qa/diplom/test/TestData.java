@@ -4,7 +4,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import ru.netology.qa.diplom.data.DataSQL;
+
 
 public class TestData {
     final String approved = "APPROVED";
@@ -24,6 +24,5 @@ public class TestData {
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
-        DataSQL.cleanDatabase();
     }
 }

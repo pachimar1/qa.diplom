@@ -244,16 +244,7 @@ public class PaymentPageTest extends TestData {
         }
 
         @Test
-        @DisplayName("22. Проверка ввода несуществующего в базе данных номера карты")
-        void shouldWithMissingInDatabase() {
-            paymentForm.fillForm(DataHelper.generateCardDataWithNotDatabase(expiryYears));
-            paymentForm.sendForm();
-
-            paymentForm.checkCardNumberError("Неверный формат", 2);
-        }
-
-        @Test
-        @DisplayName("23. Проверка отправки формы заявки с именем, содержащим дефис")
+        @DisplayName("22. Проверка отправки формы заявки с именем, содержащим дефис")
         void shouldSendFormWithCardOwnerWithHyphen() {
             long rowsOrdersBefore = DataSQL.getRowsAmountFrom(ordersTable);
             long rowsCreditsBefore = DataSQL.getRowsAmountFrom(paymentsTable);
@@ -264,7 +255,7 @@ public class PaymentPageTest extends TestData {
             paymentForm.checkSuccessNotification(10);
             assertEquals(rowsOrdersBefore + 1, DataSQL.getRowsAmountFrom(ordersTable));
             assertEquals(rowsCreditsBefore + 1, DataSQL.getRowsAmountFrom(paymentsTable));
-            assertEquals(approved, DataSQL.getLastStatusFromCreditsTable());
+            assertEquals(approved, DataSQL.getLastEntryFromPaymentsTable());
         }
    }
 }

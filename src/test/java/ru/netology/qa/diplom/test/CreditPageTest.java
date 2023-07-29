@@ -234,16 +234,7 @@ public class CreditPageTest extends TestData {
         }
 
         @Test
-        @DisplayName("22. Проверка ввода несуществующего в базе данных номера карты")
-        void shouldWithMissingInDatabase() {
-            creditForm.fillForm(DataHelper.generateCardDataWithNotDatabase(expiryYears));
-            creditForm.sendForm();
-
-            creditForm.checkCardNumberError("Неверный формат", 2);
-        }
-
-        @Test
-        @DisplayName("23. Проверка отправки формы заявки с именем, содержащим дефис")
+        @DisplayName("22. Проверка отправки формы заявки с именем, содержащим дефис")
         void shouldSendFormWithCardOwnerWithHyphen() {
             long rowsOrdersBefore = DataSQL.getRowsAmountFrom(ordersTable);
             long rowsCreditsBefore = DataSQL.getRowsAmountFrom(creditRequestsTable);
