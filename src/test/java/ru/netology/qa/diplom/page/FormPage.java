@@ -1,7 +1,6 @@
 package ru.netology.qa.diplom.page;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 import ru.netology.qa.diplom.data.DataHelper;
 
 import java.time.Duration;
@@ -27,7 +26,7 @@ public class FormPage {
     private SelenideElement notificationError = $(".notification_status_error");
 
     public void fillForm(DataHelper.CardData data) {
-        fillCard (data.getCardNumber());
+        fillCard(data.getCardNumber());
         fillMonth(data.getMonth());
         fillYear(data.getYear());
         fillCardOwner(data.getCardOwner());
