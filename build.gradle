@@ -22,11 +22,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    testImplementation 'com.codeborne:selenide:5.19.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'com.codeborne:selenide:6.4.0'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
-    testImplementation 'mysql:mysql-connector-java:8.0.22'
+    testImplementation 'mysql:mysql-connector-java:8.0.28'
     testImplementation 'org.postgresql:postgresql:42.5.0'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'io.qameta.allure:allure-selenide:2.16.1'
